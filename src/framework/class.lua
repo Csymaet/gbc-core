@@ -58,6 +58,15 @@ local _new = function(cls, ...)
     return instance
 end
 
+-- 创建一个类(classname, super)
+  -- .__index|super
+  -- .__cname|类名
+  -- .super
+  -- .ctor()
+  -- .new(cls, ...)
+    -- .__index|cls
+    -- .class|cls
+    -- :ctor(...)|会被执行
 function cc.class(classname, super)
     assert(type(classname) == "string", string_format("cc.class() - invalid class name \"%s\"", tostring(classname)))
 

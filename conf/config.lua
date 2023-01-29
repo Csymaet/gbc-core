@@ -29,6 +29,7 @@ local config = {
     apps = {
         welcome = "_GBC_CORE_ROOT_/apps/welcome",
         tests   = "_GBC_CORE_ROOT_/apps/tests",
+        hello   = "_GBC_CORE_ROOT_/apps/hello",
     },
 
     -- default app config

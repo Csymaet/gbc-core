@@ -68,6 +68,9 @@ local _loaded = {}
 function cc.import(name, current)
     local _name = name
     local first = string_byte(name)
+    -- 不以.开头(为什么不用字符串, 而用数字?)
+    -- .开头表示当前目录
+    -- #开头表示gbc目录
     if first ~= 46 and _loaded[name] then
         return _loaded[name]
     end
@@ -85,11 +88,13 @@ function cc.import(name, current)
     if not current then
         local _, v = debug_getlocal(3, 1)
         current = v
+        ngx.log(ngx.ERR, "v: ", v, ", name: ", name)
     end
 
+    -- 存到_loaded里的key比实际require传入的参数多一个"." why???
     _name = current .. name
     if not _loaded[_name] then
-        local pos = string_find(current, "%.[^%.]*$")
+        local pos = string_find(current, "%.[^%.]*$") -- 匹配：一个点，这个点后面都不是点
         if pos then
             current = string_sub(current, 1, pos - 1)
         end
