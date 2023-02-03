@@ -88,7 +88,6 @@ function cc.import(name, current)
     if not current then
         local _, v = debug_getlocal(3, 1)
         current = v
-        ngx.log(ngx.ERR, "v: ", v, ", name: ", name)
     end
 
     -- 存到_loaded里的key比实际require传入的参数多一个"." why???
